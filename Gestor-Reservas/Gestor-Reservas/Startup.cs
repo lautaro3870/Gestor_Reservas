@@ -1,5 +1,6 @@
 using Gestor_Reservas.Models;
 using Gestor_Reservas.Repository;
+using Gestor_Reservas.Repository.Origen_Reserva;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,7 @@ namespace Gestor_Reservas
             });
 
             services.AddScoped<IUnidadesRepository, UnidadesRepository>();
+            services.AddScoped<IOrigenReservaRepository, OrigenReservaRepository>();
 
             services.AddCors(o => o.AddPolicy("Prog3", builder =>
             {

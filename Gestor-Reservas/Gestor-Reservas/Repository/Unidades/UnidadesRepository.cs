@@ -28,7 +28,7 @@ namespace Gestor_Reservas.Repository
 
             if (u != null)
             {
-                context.Unidades.Add(u);
+                context.Unidades.Update(u);
                 var valor = await context.SaveChangesAsync();
                 if (valor == 0)
                 {
@@ -37,6 +37,21 @@ namespace Gestor_Reservas.Repository
                 return u;
             }
             return null;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var u =  await context.Unidades.FindAsync(id);
+            if (u != null)
+            {
+                u.Activo = false;
+                await context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                throw new Exception("Proyecto no encontrado");
+            }
         }
 
         public async Task<List<Unidade>> GetUnidades()

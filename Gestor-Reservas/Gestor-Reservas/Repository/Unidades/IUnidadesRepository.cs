@@ -12,6 +12,6 @@ namespace Gestor_Reservas.Repository
         Task<List<Unidade>> GetUnidades();
         Task<Unidade> Create(UnidadesDTO unidad);
         Task<Unidade> Update(UnidadesDTO unidad);
-
+        Task<bool> Delete(int id);
     }
 }
