@@ -1,4 +1,5 @@
 using Gestor_Reservas.Models;
+using Gestor_Reservas.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,8 @@ namespace Gestor_Reservas
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gestor_Reservas", Version = "v1" });
             });
+
+            services.AddScoped<IUnidadesRepository, UnidadesRepository>();
 
             services.AddCors(o => o.AddPolicy("Prog3", builder =>
             {

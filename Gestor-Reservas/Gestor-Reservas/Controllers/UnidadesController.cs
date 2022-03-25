@@ -1,4 +1,6 @@
 ﻿using Gestor_Reservas.Models;
+using Gestor_Reservas.Models.DTO;
+using Gestor_Reservas.Repository;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,15 +17,16 @@ namespace Gestor_Reservas.Controllers
     [EnableCors("Prog3")]
     public class UnidadesController : ControllerBase
     {
-        private readonly d8ea1777vdeq8kContext context;
-        public UnidadesController(d8ea1777vdeq8kContext context)
+        private readonly IUnidadesRepository unidadesRepository;
+        public UnidadesController(IUnidadesRepository unidadesRepository)
         {
-            this.context = context;
+            this.unidadesRepository = unidadesRepository;
         }
+
         [HttpGet]
-        public List<Unidade> Get()
+        public async Task<List<Unidade>> Get()
         {
-            return context.Unidades.ToList();
+            return await unidadesRepository.GetUnidades();
         }
 
         // GET api/<UnidadesController>/5
@@ -35,8 +38,9 @@ namespace Gestor_Reservas.Controllers
 
         // POST api/<UnidadesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<Unidade> Post([FromBody] UnidadesDTO unidad)
         {
+            return await unidadesRepository.Create(unidad);
         }
 
         // PUT api/<UnidadesController>/5
