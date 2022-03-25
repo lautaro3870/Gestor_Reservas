@@ -1,4 +1,5 @@
 ﻿using Gestor_Reservas.Models;
+using Gestor_Reservas.Models.DTO;
 using Gestor_Reservas.Repository.Origen_Reserva;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -39,20 +40,23 @@ namespace Gestor_Reservas.Controllers
 
         // POST api/<OrigenReserva>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<OrigenReserva> Post(OrigenReservaDTO origen)
         {
+            return await origenReserva.Create(origen);
         }
 
         // PUT api/<OrigenReserva>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<OrigenReserva> Put(OrigenReservaDTO origen)
         {
+            return await origenReserva.Update(origen);
         }
 
         // DELETE api/<OrigenReserva>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<bool> Delete(int id)
         {
+            return await origenReserva.Delete(id);
         }
     }
 }
