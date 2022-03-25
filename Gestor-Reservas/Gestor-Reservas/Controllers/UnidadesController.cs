@@ -44,9 +44,10 @@ namespace Gestor_Reservas.Controllers
         }
 
         // PUT api/<UnidadesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public async Task<Unidade> Put ([FromBody] UnidadesDTO unidad)
         {
+            return await unidadesRepository.Update(unidad);
         }
 
         // DELETE api/<UnidadesController>/5

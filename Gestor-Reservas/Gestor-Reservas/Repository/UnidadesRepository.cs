@@ -43,5 +43,20 @@ namespace Gestor_Reservas.Repository
         {
             return await context.Unidades.Where(x => x.Activo == true).ToListAsync();
         }
+
+        public async Task<Unidade> Update(UnidadesDTO unidad)
+        {
+            
+            var u = await context.Unidades.FirstOrDefaultAsync(x => x.IdUnidad == unidad.Id_Unidad);
+            if (u != null)
+            {
+                u.Nombre = unidad.Nombre;
+                u.Capacidad = unidad.Capacidad;
+                context.Unidades.Update(u);
+                await context.SaveChangesAsync();
+                return u;
+            }
+            return null;
+        }
     }
 }
