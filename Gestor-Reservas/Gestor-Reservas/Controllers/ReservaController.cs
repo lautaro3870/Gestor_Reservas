@@ -48,9 +48,10 @@ namespace Gestor_Reservas.Controllers
         }
 
         // PUT api/<ReservaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<Reserva> Put(ReservaUpdate reservaUpdate)
         {
+            return await reservaRepository.Update(reservaUpdate);
         }
 
         // DELETE api/<ReservaController>/5

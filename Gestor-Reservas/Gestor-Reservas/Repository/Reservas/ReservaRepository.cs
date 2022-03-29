@@ -91,5 +91,39 @@ namespace Gestor_Reservas.Repository.Reservas
             }
             return listaReservasDTO;
         }
+
+        public async Task<Reserva> Update(ReservaUpdate reservaUpdate)
+        {
+            var reserva = await context.Reservas.FirstOrDefaultAsync(x => x.IdReserva == reservaUpdate.IdReserva);
+
+            if (reserva != null)
+            {
+                reserva.IdReserva = reservaUpdate.IdReserva;
+                reserva.MontoTotal = reservaUpdate.MontoTotal;
+                reserva.Ingreso = reservaUpdate.Ingreso;
+                reserva.Egreso = reservaUpdate.Egreso;
+                reserva.Senia = reservaUpdate.Senia;
+                reserva.Nombre = reservaUpdate.Nombre;
+                reserva.Apellido = reservaUpdate.Apellido;
+                reserva.Dni = reservaUpdate.Dni;
+                reserva.Localidad = reservaUpdate.Localidad;
+                reserva.Edad = reservaUpdate.Edad;
+                reserva.Email = reservaUpdate.Email;
+                reserva.Telefono = reservaUpdate.Telefono;
+                reserva.IdUnidad = reservaUpdate.IdUnidad;
+                reserva.CantidadAcompaniantes = reservaUpdate.CantidadAcompaniantes;
+                reserva.Observaciones = reservaUpdate.Observaciones;
+                reserva.IdOrigen = reservaUpdate.IdOrigen;
+                reserva.Activo = true;
+                
+                context.Reservas.Update(reserva);
+                await context.SaveChangesAsync();
+                return reserva;
+            }
+            else
+            {
+                throw new Exception("No se encontro la reserva");
+            }
+        }
     }
 }

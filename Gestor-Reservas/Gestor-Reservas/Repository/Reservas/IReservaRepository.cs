@@ -11,6 +11,7 @@ namespace Gestor_Reservas.Repository.Reservas
     {
         Task<List<ReservaDTO>> GetReservasAsync();
         Task<Reserva> Create(ReservaInsert reservaInsert);
+        Task<Reserva> Update(ReservaUpdate reservaUpdate);
 
     }
 }
