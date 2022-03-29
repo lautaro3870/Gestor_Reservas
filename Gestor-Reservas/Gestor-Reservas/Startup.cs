@@ -1,6 +1,8 @@
 using Gestor_Reservas.Models;
+using Gestor_Reservas.Models.DTO;
 using Gestor_Reservas.Repository;
 using Gestor_Reservas.Repository.Origen_Reserva;
+using Gestor_Reservas.Repository.Reservas;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,7 @@ namespace Gestor_Reservas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
 
             services.AddDbContext<d8ea1777vdeq8kContext>(option =>
             option.UseNpgsql(Configuration.GetConnectionString("DefaultConnectionString")));
@@ -42,6 +45,7 @@ namespace Gestor_Reservas
 
             services.AddScoped<IUnidadesRepository, UnidadesRepository>();
             services.AddScoped<IOrigenReservaRepository, OrigenReservaRepository>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
 
             services.AddCors(o => o.AddPolicy("Prog3", builder =>
             {

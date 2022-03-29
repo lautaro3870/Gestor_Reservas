@@ -27,7 +27,6 @@ namespace Gestor_Reservas.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("Server=ec2-52-201-124-168.compute-1.amazonaws.com; port=5432; user id = wvyaglaqcauppz; password = 72fc93432b36a92ca966f36292e03e943bfa51a687080994e21a77de023818f6; database=d8ea1777vdeq8k; pooling = true; SSL Mode=Prefer;Trust Server Certificate=true;");
             }
         }
