@@ -42,8 +42,9 @@ namespace Gestor_Reservas.Controllers
 
         // POST api/<ReservaController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<Reserva> Post(ReservaInsert reservaInsert)
         {
+            return await reservaRepository.Create(reservaInsert);
         }
 
         // PUT api/<ReservaController>/5

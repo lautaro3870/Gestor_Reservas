@@ -16,9 +16,44 @@ namespace Gestor_Reservas.Repository.Reservas
         {
             this.context = context;
         }
+
+        public async Task<Reserva> Create(ReservaInsert reservaInsert)
+        {
+            var reserva = new Reserva
+            {
+                MontoTotal = reservaInsert.MontoTotal,
+                Ingreso = reservaInsert.Ingreso,
+                Egreso = reservaInsert.Egreso,
+                Senia = reservaInsert.Senia,
+                Nombre = reservaInsert.Nombre,
+                Apellido = reservaInsert.Apellido,
+                Dni = reservaInsert.Dni,
+                Localidad = reservaInsert.Localidad,
+                Edad = reservaInsert.Edad,
+                Email = reservaInsert.Email,
+                Telefono = reservaInsert.Telefono,
+                IdUnidad = reservaInsert.IdUnidad,
+                CantidadAcompaniantes = reservaInsert.CantidadAcompaniantes,
+                Observaciones = reservaInsert.Observaciones,
+                IdOrigen = reservaInsert.IdOrigen,
+                Activo = true
+            };
+
+            if (reserva != null)
+            {
+                context.Reservas.Add(reserva);
+                await context.SaveChangesAsync();
+                return reserva;
+            }
+            else
+            {
+                throw new Exception("No se pudo insertar la reserva");
+            }
+        }
+
         public async Task<List<ReservaDTO>> GetReservasAsync()
         {
-            var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Now).OrderBy(x => x.IdReserva).ToListAsync();
+            var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();
             var unidadDB = await context.Unidades.ToListAsync();
             var origenDB = await context.OrigenReservas.ToListAsync();
 

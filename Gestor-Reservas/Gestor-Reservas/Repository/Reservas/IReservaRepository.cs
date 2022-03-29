@@ -10,5 +10,7 @@ namespace Gestor_Reservas.Repository.Reservas
     public interface IReservaRepository
     {
         Task<List<ReservaDTO>> GetReservasAsync();
+        Task<Reserva> Create(ReservaInsert reservaInsert);
+
     }
 }
