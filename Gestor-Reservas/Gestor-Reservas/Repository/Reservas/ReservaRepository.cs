@@ -51,6 +51,21 @@ namespace Gestor_Reservas.Repository.Reservas
             }
         }
 
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var reserva = await context.Reservas.FindAsync(id);
+            if (reserva == null)
+            {
+                throw new Exception("Reserva no encontrada");
+            }
+            else
+            {
+                reserva.Activo = false;
+                await context.SaveChangesAsync();
+                return true;
+            }
+        }
+
         public async Task<List<ReservaDTO>> GetReservasAsync()
         {
             var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();

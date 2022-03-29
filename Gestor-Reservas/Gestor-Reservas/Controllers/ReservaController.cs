@@ -56,8 +56,9 @@ namespace Gestor_Reservas.Controllers
 
         // DELETE api/<ReservaController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<bool> Delete(int id)
         {
+            return await reservaRepository.DeleteAsync(id);
         }
     }
 }
