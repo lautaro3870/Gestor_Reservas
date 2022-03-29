@@ -18,13 +18,17 @@ namespace Gestor_Reservas.Repository.Reservas
         }
         public async Task<List<ReservaDTO>> GetReservasAsync()
         {
-            var reservas = await context.Reservas.Where(x => x.Activo == true).OrderBy(x => x.IdReserva).ToListAsync();
+            var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Now).OrderBy(x => x.IdReserva).ToListAsync();
             var unidadDB = await context.Unidades.ToListAsync();
             var origenDB = await context.OrigenReservas.ToListAsync();
 
             var listaReservasDTO = new List<ReservaDTO>();
 
-            foreach(var i in reservas)
+            if (reservas.Count == 0)
+            {
+                throw new Exception("No hay reservas");
+            }
+            foreach (var i in reservas)
             {
                 var unidad = unidadDB.FirstOrDefault(x => x.IdUnidad == i.IdUnidad);
                 var origen = origenDB.FirstOrDefault(x => x.IdOrigen == i.IdOrigen);
