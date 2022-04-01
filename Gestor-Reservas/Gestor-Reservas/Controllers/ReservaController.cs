@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Gestor_Reservas.Models;
 using Gestor_Reservas.Models.DTO;
+using Gestor_Reservas.Repository.QueryFilters;
 using Gestor_Reservas.Repository.Reservas;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,9 +28,9 @@ namespace Gestor_Reservas.Controllers
 
         // GET: api/<ReservaController>
         [HttpGet]
-        public async Task<ActionResult<List<ReservaDTO>>> GetReservas()
+        public async Task<ActionResult<List<ReservaDTO>>> GetReservas([FromQuery] ReservasQueryFilters filters)
         {
-            var reservas = await reservaRepository.GetReservasAsync();
+            var reservas = await reservaRepository.GetReservasAsync(filters);
             return Ok(reservas);
         }
 

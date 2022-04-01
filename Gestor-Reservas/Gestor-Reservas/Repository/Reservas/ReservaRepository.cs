@@ -1,5 +1,6 @@
 ﻿using Gestor_Reservas.Models;
 using Gestor_Reservas.Models.DTO;
+using Gestor_Reservas.Repository.QueryFilters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace Gestor_Reservas.Repository.Reservas
             }
         }
 
-        public async Task<List<ReservaDTO>> GetReservasAsync()
+        public async Task<List<ReservaDTO>> GetReservasAsync(ReservasQueryFilters filters)
         {
             var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();
             var unidadDB = await context.Unidades.ToListAsync();
@@ -97,13 +98,21 @@ namespace Gestor_Reservas.Repository.Reservas
                     Email = i.Email,
                     Telefono = i.Telefono,
                     Unidad = unidad.Nombre,
+                    IdUnidad = unidad.IdUnidad,
                     CantidadAcompaniantes = i.CantidadAcompaniantes,
                     Observaciones = i.Observaciones,
+                    IdOrigen = origen.IdOrigen,
                     Origen = origen.Origen,
                     Activo = i.Activo
                 };
                 listaReservasDTO.Add(reservaDto);
             }
+
+            if (filters.Unidad != null)
+            {
+                listaReservasDTO = listaReservasDTO.Where(x => x.IdUnidad == filters.Unidad).ToList();
+            }
+
             return listaReservasDTO;
         }
 
