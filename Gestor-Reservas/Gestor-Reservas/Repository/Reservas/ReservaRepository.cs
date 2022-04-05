@@ -87,8 +87,8 @@ namespace Gestor_Reservas.Repository.Reservas
                 var reservaDto = new ReservaDTO
                 {
                     MontoTotal = i.MontoTotal,
-                    Ingreso = i.Ingreso.ToShortDateString(),
-                    Egreso = i.Egreso.ToShortDateString(),
+                    Ingreso = i.Ingreso.ToString("dd/MM/yyyy"),
+                    Egreso = i.Egreso.ToString("dd/MM/yyyy"),
                     Senia = i.Senia,
                     Nombre = i.Nombre,
                     Apellido = i.Apellido,
