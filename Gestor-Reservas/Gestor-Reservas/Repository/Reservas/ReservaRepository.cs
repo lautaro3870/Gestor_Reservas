@@ -69,7 +69,7 @@ namespace Gestor_Reservas.Repository.Reservas
 
         public async Task<List<ReservaDTO>> GetReservasAsync(ReservasQueryFilters filters)
         {
-            var reservas = await context.Reservas.Where(x => x.Activo == true && x.Ingreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();
+            var reservas = await context.Reservas.Where(x => x.Activo == true && x.Egreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();
             var unidadDB = await context.Unidades.ToListAsync();
             var origenDB = await context.OrigenReservas.ToListAsync();
 
@@ -87,8 +87,8 @@ namespace Gestor_Reservas.Repository.Reservas
                 var reservaDto = new ReservaDTO
                 {
                     MontoTotal = i.MontoTotal,
-                    Ingreso = i.Ingreso,
-                    Egreso = i.Egreso,
+                    Ingreso = i.Ingreso.ToShortDateString(),
+                    Egreso = i.Egreso.ToShortDateString(),
                     Senia = i.Senia,
                     Nombre = i.Nombre,
                     Apellido = i.Apellido,

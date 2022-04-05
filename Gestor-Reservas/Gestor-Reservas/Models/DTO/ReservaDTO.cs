@@ -8,8 +8,8 @@ namespace Gestor_Reservas.Models.DTO
     public class ReservaDTO
     {
         public int MontoTotal { get; set; }
-        public DateTime Ingreso { get; set; }
-        public DateTime Egreso { get; set; }
+        public string Ingreso { get; set; }
+        public string Egreso { get; set; }
         public int? Senia { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
