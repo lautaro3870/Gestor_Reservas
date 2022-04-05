@@ -84,8 +84,10 @@ namespace Gestor_Reservas.Repository.Reservas
                 var unidad = unidadDB.FirstOrDefault(x => x.IdUnidad == i.IdUnidad);
                 var origen = origenDB.FirstOrDefault(x => x.IdOrigen == i.IdOrigen);
 
+                
                 var reservaDto = new ReservaDTO
                 {
+                    IdReserva = i.IdReserva,
                     MontoTotal = i.MontoTotal,
                     Ingreso = i.Ingreso.ToString("dd/MM/yyyy"),
                     Egreso = i.Egreso.ToString("dd/MM/yyyy"),
@@ -103,7 +105,7 @@ namespace Gestor_Reservas.Repository.Reservas
                     Observaciones = i.Observaciones,
                     IdOrigen = origen.IdOrigen,
                     Origen = origen.Origen,
-                    Activo = i.Activo
+                    Activo = i.Activo,
                 };
                 listaReservasDTO.Add(reservaDto);
             }

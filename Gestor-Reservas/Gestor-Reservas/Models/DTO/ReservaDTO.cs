@@ -7,6 +7,7 @@ namespace Gestor_Reservas.Models.DTO
 {
     public class ReservaDTO
     {
+        public int IdReserva { get; set; }
         public int MontoTotal { get; set; }
         public string Ingreso { get; set; }
         public string Egreso { get; set; }
