@@ -53,6 +53,8 @@ namespace Gestor_Reservas.Repository.Reservas
             }
         }
 
+        
+
         public async Task<bool> DeleteAsync(int id)
         {
             var reserva = await context.Reservas.FindAsync(id);
@@ -117,6 +119,10 @@ namespace Gestor_Reservas.Repository.Reservas
                 listaReservasDTO = listaReservasDTO.Where(x => x.IdReserva == filters.IdReserva).ToList();
             }
             
+            if(filters.Entrada != null && filters.Salida != null){
+                listaReservasDTO = listaReservasDTO.Where(x => Convert.ToDateTime(x.Ingreso) >= filters.Entrada && Convert.ToDateTime(x.Egreso) <= filters.Salida).ToList();
+            }
+
             if (filters.Unidad != null)
             {
                 listaReservasDTO = listaReservasDTO.Where(x => x.IdUnidad == filters.Unidad).ToList();
