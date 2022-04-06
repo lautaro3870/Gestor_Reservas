@@ -110,10 +110,16 @@ namespace Gestor_Reservas.Repository.Reservas
                 listaReservasDTO.Add(reservaDto);
             }
 
+            if(filters.IdReserva != null)
+            {
+                listaReservasDTO = listaReservasDTO.Where(x => x.IdReserva == filters.IdReserva).ToList();
+            }
+            
             if (filters.Unidad != null)
             {
                 listaReservasDTO = listaReservasDTO.Where(x => x.IdUnidad == filters.Unidad).ToList();
             }
+
 
             return listaReservasDTO;
         }

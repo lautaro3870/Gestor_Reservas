@@ -7,6 +7,7 @@ namespace Gestor_Reservas.Repository.QueryFilters
 {
     public class ReservasQueryFilters
     {
+        public int? IdReserva { get; set; }
         public int? Unidad { get; set; }
     }
 }
