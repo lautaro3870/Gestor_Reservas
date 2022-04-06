@@ -23,5 +23,6 @@ namespace Gestor_Reservas.Models.DTO
         public int CantidadAcompaniantes { get; set; }
         public string Observaciones { get; set; }
         public int IdOrigen { get; set; }
+        public int? Noches { get; set; }
     }
 }

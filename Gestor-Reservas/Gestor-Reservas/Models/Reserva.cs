@@ -19,11 +19,13 @@ namespace Gestor_Reservas.Models
         public int Edad { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-        public int IdUnidad { get; set; }       
+        public int IdUnidad { get; set; }
         public int CantidadAcompaniantes { get; set; }
         public string Observaciones { get; set; }
         public int IdOrigen { get; set; }
         public bool Activo { get; set; }
+        public int? Noches { get; set; }
+
         public virtual OrigenReserva IdOrigenNavigation { get; set; }
         public virtual Unidade IdUnidadNavigation { get; set; }
     }

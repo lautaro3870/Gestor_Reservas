@@ -37,6 +37,7 @@ namespace Gestor_Reservas.Repository.Reservas
                 CantidadAcompaniantes = reservaInsert.CantidadAcompaniantes,
                 Observaciones = reservaInsert.Observaciones,
                 IdOrigen = reservaInsert.IdOrigen,
+                Noches = reservaInsert.Noches,
                 Activo = true
             };
 
@@ -105,6 +106,7 @@ namespace Gestor_Reservas.Repository.Reservas
                     Observaciones = i.Observaciones,
                     IdOrigen = origen.IdOrigen,
                     Origen = origen.Origen,
+                    Noches = i.Noches,
                     Activo = i.Activo,
                 };
                 listaReservasDTO.Add(reservaDto);
@@ -146,6 +148,7 @@ namespace Gestor_Reservas.Repository.Reservas
                 reserva.CantidadAcompaniantes = reservaUpdate.CantidadAcompaniantes;
                 reserva.Observaciones = reservaUpdate.Observaciones;
                 reserva.IdOrigen = reservaUpdate.IdOrigen;
+                reserva.Noches = reservaUpdate.Noches;
                 reserva.Activo = true;
                 
                 context.Reservas.Update(reserva);
