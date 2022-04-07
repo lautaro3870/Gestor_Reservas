@@ -36,9 +36,9 @@ namespace Gestor_Reservas.Controllers
 
         // GET api/<ReservaController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ReservaDTOId> GetReservaId(int id)
         {
-            return "value";
+            return await reservaRepository.GetReservaId(id);
         }
 
         // POST api/<ReservaController>

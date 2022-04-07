@@ -70,6 +70,45 @@ namespace Gestor_Reservas.Repository.Reservas
             }
         }
 
+        public async Task<ReservaDTOId> GetReservaId(int id)
+        {
+            var i = await context.Reservas.FindAsync(id);
+            var unidadDB = await context.Unidades.ToListAsync();
+            var origenDB = await context.OrigenReservas.ToListAsync();
+
+            if (i != null)
+            {
+                var reservaDTOId = new ReservaDTOId
+                {
+                    IdReserva = i.IdReserva,
+                    MontoTotal = i.MontoTotal,
+                    Ingreso = i.Ingreso,
+                    Egreso = i.Egreso,
+                    Senia = i.Senia,
+                    Nombre = i.Nombre,
+                    Apellido = i.Apellido,
+                    Dni = i.Dni,
+                    Localidad = i.Localidad,
+                    Edad = i.Edad,
+                    Email = i.Email,
+                    Telefono = i.Telefono,
+                    IdUnidad = i.IdUnidad,
+                    CantidadAcompaniantes = i.CantidadAcompaniantes,
+                    Observaciones = i.Observaciones,
+                    IdOrigen = i.IdOrigen,
+                    Noches = i.Noches,
+                    Cochera = i.Cochera,
+                    Saldo = i.Saldo,
+                    Activo = i.Activo
+                };
+                return reservaDTOId;
+            }
+            else
+            {
+                throw new Exception("Reserva no encontrada");
+            }
+        }
+
         public async Task<List<ReservaDTO>> GetReservasAsync(ReservasQueryFilters filters)
         {
             var reservas = await context.Reservas.Where(x => x.Activo == true && x.Egreso >= DateTime.Today).OrderBy(x => x.IdReserva).ToListAsync();

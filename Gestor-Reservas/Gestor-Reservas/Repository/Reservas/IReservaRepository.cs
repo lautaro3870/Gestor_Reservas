@@ -10,6 +10,7 @@ namespace Gestor_Reservas.Repository.Reservas
 {
     public interface IReservaRepository
     {
+        Task<ReservaDTOId> GetReservaId(int id);
         Task<List<ReservaDTO>> GetReservasAsync(ReservasQueryFilters filters);
         Task<Reserva> Create(ReservaInsert reservaInsert);
         Task<Reserva> Update(ReservaUpdate reservaUpdate);
