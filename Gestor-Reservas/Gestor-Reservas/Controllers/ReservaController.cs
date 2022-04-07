@@ -3,6 +3,7 @@ using Gestor_Reservas.Models;
 using Gestor_Reservas.Models.DTO;
 using Gestor_Reservas.Repository.QueryFilters;
 using Gestor_Reservas.Repository.Reservas;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Gestor_Reservas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("Prog3")]
     public class ReservaController : ControllerBase
     {
         private readonly IReservaRepository reservaRepository;
