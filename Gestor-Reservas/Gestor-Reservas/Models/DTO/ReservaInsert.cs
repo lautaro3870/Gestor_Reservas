@@ -24,5 +24,7 @@ namespace Gestor_Reservas.Models.DTO
         public int IdOrigen { get; set; }
         public bool Activo { get; set; }
         public int? Noches { get; set; }
+        public int? Saldo { get; set; }
+        public bool? Cochera { get; set; }
     }
 }

@@ -25,6 +25,8 @@ namespace Gestor_Reservas.Models
         public int IdOrigen { get; set; }
         public bool Activo { get; set; }
         public int? Noches { get; set; }
+        public int? Saldo { get; set; }
+        public bool? Cochera { get; set; }
 
         public virtual OrigenReserva IdOrigenNavigation { get; set; }
         public virtual Unidade IdUnidadNavigation { get; set; }

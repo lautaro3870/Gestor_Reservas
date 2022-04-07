@@ -108,6 +108,8 @@ namespace Gestor_Reservas.Models
 
                 entity.Property(e => e.CantidadAcompaniantes).HasColumnName("cantidad_acompaniantes");
 
+                entity.Property(e => e.Cochera).HasColumnName("cochera");
+
                 entity.Property(e => e.Dni)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -147,8 +149,10 @@ namespace Gestor_Reservas.Models
                     .HasColumnName("nombre");
 
                 entity.Property(e => e.Observaciones)
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .HasColumnName("observaciones");
+
+                entity.Property(e => e.Saldo).HasColumnName("saldo");
 
                 entity.Property(e => e.Senia).HasColumnName("senia");
 

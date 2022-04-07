@@ -38,6 +38,8 @@ namespace Gestor_Reservas.Repository.Reservas
                 Observaciones = reservaInsert.Observaciones,
                 IdOrigen = reservaInsert.IdOrigen,
                 Noches = reservaInsert.Noches,
+                Cochera = reservaInsert.Cochera,
+                Saldo = reservaInsert.Saldo,
                 Activo = true
             };
 
@@ -52,8 +54,6 @@ namespace Gestor_Reservas.Repository.Reservas
                 throw new Exception("No se pudo insertar la reserva");
             }
         }
-
-        
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -109,6 +109,8 @@ namespace Gestor_Reservas.Repository.Reservas
                     IdOrigen = origen.IdOrigen,
                     Origen = origen.Origen,
                     Noches = i.Noches,
+                    Cochera = i.Cochera,
+                    Saldo = i.Saldo,
                     Activo = i.Activo,
                 };
                 listaReservasDTO.Add(reservaDto);
@@ -127,7 +129,6 @@ namespace Gestor_Reservas.Repository.Reservas
             {
                 listaReservasDTO = listaReservasDTO.Where(x => x.IdUnidad == filters.Unidad).ToList();
             }
-
 
             return listaReservasDTO;
         }
@@ -155,6 +156,8 @@ namespace Gestor_Reservas.Repository.Reservas
                 reserva.Observaciones = reservaUpdate.Observaciones;
                 reserva.IdOrigen = reservaUpdate.IdOrigen;
                 reserva.Noches = reservaUpdate.Noches;
+                reserva.Saldo = reservaUpdate.Saldo;
+                reserva.Cochera = reservaUpdate.Cochera;
                 reserva.Activo = true;
                 
                 context.Reservas.Update(reserva);
